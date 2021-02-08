@@ -1,0 +1,13 @@
+{
+  "name": "TypeScript_Prac",
+  "version": "1.0.0",
+  "description": "trying to learn TypeScript",
+  "main": "index.js",
+  "repository": "https://github.com/jaewon1022/TypeScript_Prac",
+  "author": "JW <andyjaewon@naver.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "prestart": "tsc"
+  }
+}
