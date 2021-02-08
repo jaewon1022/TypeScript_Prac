@@ -1,9 +1,19 @@
-const name = "JW__", age = 21, gender = "Male";
-
-const sayAll = (name:string, age:number, gender:string) => {
-    return `hello ${name}, ur age is ${age}. and ur gender is ${gender}!!!`;
+interface Human {
+    name:string;
+    age:number;
+    gender:string;
 }
 
-console.log(sayAll(name, age, gender));
+const person = {
+    name: "JW__", 
+    age: 21, 
+    gender: "Male"
+};
+
+const sayAll = (person:Human) => {
+    return `hello ${person.name}, ur age is ${person.age}. and ur gender is ${person.gender}!!!`;
+}
+
+console.log(sayAll(person));
 
 export {}
