@@ -1,19 +1,36 @@
-interface Human {
-    name:string;
-    age:number;
-    gender:string;
+class Block {
+    public index: number;
+    public hash: string;
+    public previousHash: string;
+    public data: string;
+    public timeStamp: number;
+    constructor (
+        index: number,
+        hash: string,
+        previousHash: string,
+        data: string,
+        timeStamp: number,
+    ){
+        this.index = index;
+        this.hash = hash;
+        this.previousHash = previousHash;
+        this.data = data;
+        this.timeStamp = timeStamp;
+    }
 }
 
-const person = {
-    name: "JW__", 
-    age: 21, 
-    gender: "Male"
-};
-
-const sayAll = (person:Human) => {
-    return `hello ${person.name}, ur age is ${person.age}. and ur gender is ${person.gender}!!!`;
+function randomHashMaker() {
+    const alphabetChar = 'abcdefghijklmnopqstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const alphabetCharLen = alphabetChar.length;
+    let hash = "";
+    for(let i = 0; i < 20; i++){
+        hash += alphabetChar.charAt(Math.floor(Math.random() * alphabetCharLen));
+    }
+    return hash;
 }
 
-console.log(sayAll(person));
+const genesisBlock:Block = new Block(0, randomHashMaker(), "", "Hello", 123456);
+
+console.log(genesisBlock);
 
 export {}
