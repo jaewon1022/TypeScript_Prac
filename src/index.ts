@@ -1,9 +1,20 @@
+import * as CryptoJS from "crypto-js";
+
 class Block {
     public index: number;
     public hash: string;
     public previousHash: string;
     public data: string;
     public timeStamp: number;
+
+    static calculateBlockHash = (
+        index:number, 
+        previousHash:string, 
+        timeStamp:number, 
+        data:string
+        ):string => CryptoJS.SHA256(index + previousHash + timeStamp + data).toString();
+
+
     constructor (
         index: number,
         hash: string,
@@ -19,18 +30,15 @@ class Block {
     }
 }
 
-function randomHashMaker() {
-    const alphabetChar = 'abcdefghijklmnopqstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const alphabetCharLen = alphabetChar.length;
-    let hash = "";
-    for(let i = 0; i < 20; i++){
-        hash += alphabetChar.charAt(Math.floor(Math.random() * alphabetCharLen));
-    }
-    return hash;
-}
 
-const genesisBlock:Block = new Block(0, randomHashMaker(), "", "Hello", 123456);
+const genesisBlock:Block = new Block(0, "202020202020", "", "Hello", 123456);
 
-console.log(genesisBlock);
+let blockChain: Block[] = [genesisBlock];
+
+const getBlockChain = () : Block[] => blockChain;
+
+const getLatestBlock = (): Block => blockChain[blockChain.length - 1];
+
+const getNewTimeStamp = (): number => Math.round(new Date().getTime() / 1000);
 
 export {}
