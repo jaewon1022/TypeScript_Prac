@@ -1,21 +1,36 @@
-//선택 매개변수 이후에 필수 매개변수를 두는 것은 허용되지 않는다.
-//필수 매개변수가 선택 매개변수 뒤에 있을 시, 인자가 어떤 매개변수의 값인지 구분할 수 없기 때문이다. 
-class Human {
-    public name: string;
-    public age: number;
-    public gender: string;
-    constructor(name: string, age: number, gender: string){
-        this.name = name;
-        this.age = age;
-        this.gender = gender;
+class Block {
+    public index: number;
+    public hash: string;
+    public previousHash: string;
+    public data: string;
+    public timeStamp: number;
+    constructor (
+        index: number,
+        hash: string,
+        previousHash: string,
+        data: string,
+        timeStamp: number,
+    ){
+        this.index = index;
+        this.hash = hash;
+        this.previousHash = previousHash;
+        this.data = data;
+        this.timeStamp = timeStamp;
     }
 }
-const JW = new Human("JWon", 21, "Male");
 
-const sayAll = (person:Human) => {
-    return `hello ${person.name}, ur age is ${person.age}. and ur gender is ${person.gender}!!!`;
+function randomHashMaker() {
+    const alphabetChar = 'abcdefghijklmnopqstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const alphabetCharLen = alphabetChar.length;
+    let hash = "";
+    for(let i = 0; i < 20; i++){
+        hash += alphabetChar.charAt(Math.floor(Math.random() * alphabetCharLen));
+    }
+    return hash;
 }
 
-console.log(sayAll(JW));
+const genesisBlock:Block = new Block(0, randomHashMaker(), "", "Hello", 123456);
+
+console.log(genesisBlock);
 
 export {}
